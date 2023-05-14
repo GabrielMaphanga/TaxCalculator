@@ -7,11 +7,11 @@
 
 <form asp-action="Calculate" method="post">
     <div>
-        <label for="AnnualIncome">AnnualIncome:</label>
+        <label for="AnnualIncome">Please enter your annual income R:</label>
         <input type="number" id="AnnualIncome" name="AnnualIncome" value="@Model.AnnualIncome" />
     </div>
     <div>
-        <label asp-for="PostalCodeValue">Postal Code</label>
+        <label asp-for="PostalCodeValue">Please select your postal code :</label>
         <select asp-for="@Model.PostalCodeValue">
             <option value="">Choose an option</option>
             <option value="7441">7441</option>

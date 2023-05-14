@@ -33,16 +33,22 @@ namespace TaxCalculator.View.Controllers
 
         public async Task<IActionResult> Calculate(IndividualInput individualInput)
         {
-         
-            //Make http call to CalculateTaxAPI
-            var calculated = await _httpClient.PostAsJsonAsync("https://localhost:44380/Create", individualInput);
-            var calculateMessage = calculated.Content.ReadAsStringAsync().Result;
 
-            //Deserialize Tax value
-            var calculatedAnnualTax = Util.Deserialize<CalculatedAnnualTax>(calculateMessage);
+            if (ModelState.IsValid)
+            {
+                //Make http call to CalculateTaxAPI
+                var calculated = await _httpClient.PostAsJsonAsync("https://localhost:44380/Create", individualInput);
+                var calculateMessage = calculated.Content.ReadAsStringAsync().Result;
+
+                //Deserialize Tax value
+                var calculatedAnnualTax = Util.Deserialize<CalculatedAnnualTax>(calculateMessage);
 
 
-            return View(calculatedAnnualTax);
+                return View(calculatedAnnualTax);
+            }else
+            {
+                return View();
+            }
                 
         }
 

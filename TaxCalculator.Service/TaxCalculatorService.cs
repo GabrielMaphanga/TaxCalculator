@@ -25,7 +25,7 @@ namespace TaxCalculator.Service
 
         public CalculatedAnnualTax CalculateFlatValueTax(IndividualInput individualInput)
         {
-            var calculateAnnualTax = new CalculatedAnnualTax();
+            var calculateAnnualTax = new CalculatedAnnualTax {DateTime= DateTime.Now};
             
             if(individualInput.AnnualIncome < 200000)
             {
