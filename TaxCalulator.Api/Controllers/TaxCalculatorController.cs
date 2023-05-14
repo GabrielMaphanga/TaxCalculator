@@ -21,8 +21,13 @@ namespace TaxCalulator.Api.Controllers
             _taxCalculatorService = taxCalculatorService;
         }
 
+        /// <summary>
+        /// Creates the calculate annual tax
+        /// </summary>
+        /// <param name="individualInput">The individual input.</param>
+        /// <returns></returns>
         [HttpPost]
-        [Route("Create")]
+        [Route("CreateAndCalculate")]
         public ActionResult<CalculatedAnnualTax> CreateCalculated([FromBody] IndividualInput individualInput)
         {
             CalculatedAnnualTax calculatedAnnualTax = new CalculatedAnnualTax();
@@ -53,6 +58,54 @@ namespace TaxCalulator.Api.Controllers
 
             return BadRequest();
         }
+        /// <summary>
+        /// Gets the calculated annual taxes.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Get")]
+        public List<CalculatedAnnualTax> GetCalculatedAnnualTaxes()
+        {
+            return _taxCalculatorRepository.GetCalculatedAnnualTaxes();
+        }
+
+        /// <summary>
+        /// Gets the calculated annual tax.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+       [HttpGet]
+        [Route("Get/{id}")]
+        public CalculatedAnnualTax GetCalculatedAnnualTax(int id)
+        {
+            return _taxCalculatorRepository.GetCalculatedAnnualTax(id);
+        }
+
+
+
+        /// <summary>
+        /// Deletes the calculated annual tax.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        [HttpDelete]
+        [Route("Delete/{id}")]
+        public void DeleteCalculatedAnnualTax(int id)
+        {
+            _taxCalculatorRepository.DeleteCalculatedAnnualTax(id);
+        }
+
+        /// <summary>
+        /// Updates the calculated annual tax.
+        /// </summary>
+        /// <param name="calculatedAnnualTax">The calculated annual tax.</param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("Update")]
+        public CalculatedAnnualTax UpdateCalculatedAnnualTax([FromBody] CalculatedAnnualTax calculatedAnnualTax)
+        {
+           return  _taxCalculatorRepository.UpdateCalculatedAnnualTax(calculatedAnnualTax);
+        }
+
 
     }
 }

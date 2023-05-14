@@ -78,7 +78,17 @@ namespace TaxCalculator.Infrastructure.Data
 
         public CalculatedAnnualTax UpdateCalculatedAnnualTax(CalculatedAnnualTax calculatedAnnualTax)
         {
-            throw new NotImplementedException();
+            var updatedcalculatedAnnualTax = new CalculatedAnnualTax();
+            using (IDbConnection dbConnection = Connection)
+            {
+                dbConnection.Open();
+
+                var query = "UPDATE dbo.CalculatedAnnualTax SET CalculatedTax = @CalculatedTax, NetPay = @NetPay WHERE Id = @Id ";
+
+                updatedcalculatedAnnualTax = dbConnection.ExecuteScalar<CalculatedAnnualTax>(query, calculatedAnnualTax);
+
+            }
+            return updatedcalculatedAnnualTax;
         }
     }
 }

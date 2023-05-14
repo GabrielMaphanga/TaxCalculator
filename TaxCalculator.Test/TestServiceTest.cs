@@ -21,14 +21,21 @@ namespace TaxCalculator.Test
             // Arrange
             var newInput = new IndividualInput
             {
+                AnnualIncome = 80000,
+                PostalCodeValue = 100
+            };
+            var expectedAnswer = new CalculatedAnnualTax
+            {
+                CalculatedTax = 20000,
+                NetPay = 60000
 
             };
 
             // Act
-           var calculated= _taxCalculatorService.CalculateProgressiveTax(newInput);
+            var calculated = _taxCalculatorService.CalculateFlatValueTax(newInput);
 
             // Assert
-            //Assert.w(newEntity, _entities);
+            Assert.Equals(calculated.CalculatedTax, expectedAnswer.CalculatedTax);
         }
 
         [Test]
@@ -37,6 +44,13 @@ namespace TaxCalculator.Test
             // Arrange
             var newInput = new IndividualInput
             {
+                AnnualIncome = 80000,
+                PostalCodeValue = 7000
+            };
+            var expectedAnswer = new CalculatedAnnualTax
+            {
+                CalculatedTax = 2000,
+                NetPay = 60000
 
             };
 
@@ -44,7 +58,7 @@ namespace TaxCalculator.Test
             var calculated = _taxCalculatorService.CalculateFlatValueTax(newInput);
 
             // Assert
-            //Assert.w(newEntity, _entities);
+            Assert.Equals(calculated.CalculatedTax, expectedAnswer.CalculatedTax);
         }
         [Test]
         public void Can_Calcualte_Flat_rate_Tax()
@@ -52,6 +66,13 @@ namespace TaxCalculator.Test
             // Arrange
             var newInput = new IndividualInput
             {
+                AnnualIncome = 80000,
+                PostalCodeValue = 100
+            };
+            var expectedAnswer = new CalculatedAnnualTax
+            {
+                CalculatedTax = 14000,
+                NetPay = 66000
 
             };
 
@@ -59,7 +80,7 @@ namespace TaxCalculator.Test
             var calculated = _taxCalculatorService.CalculateFlatrateTax(newInput);
 
             // Assert
-            //Assert.w(newEntity, _entities);
+            Assert.Equals(calculated.CalculatedTax, expectedAnswer.CalculatedTax);
         }
         [Test]
         public void Can_Calcualte_ProGressive_Tax()
@@ -67,14 +88,20 @@ namespace TaxCalculator.Test
             // Arrange
             var newInput = new IndividualInput
             {
-
+                AnnualIncome = 80000,
+                PostalCodeValue = 1000
+            };
+            var expectedAnswer = new CalculatedAnnualTax
+            {
+                CalculatedTax = 20000,
+                NetPay = 60000
             };
 
             // Act
             var calculated = _taxCalculatorService.CalculateProGressiveTax(newInput);
 
             // Assert
-            //Assert.w(newEntity, _entities);
+            Assert.Equals(calculated.CalculatedTax, expectedAnswer.CalculatedTax);
         }
     }
 }

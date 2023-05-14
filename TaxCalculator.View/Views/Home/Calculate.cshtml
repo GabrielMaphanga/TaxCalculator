@@ -4,10 +4,10 @@
     ViewData["Title"] = "Calculate";
 }
 
-<h1>Calculate</h1>
+<h1>Calculated Annual Tax!</h1>
 
 <div>
-    <h4>CalculatedAnnualTax</h4>
+    
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -32,11 +32,12 @@
             @Html.DisplayNameFor(model => model.DateTime)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateTime) for the Calculation !
+          You calculated your tax on  @Html.DisplayFor(model => model.DateTime) !
         </dd>
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Calculator</a>
+    
+    <a asp-action="Index">Back</a>
+    <a asp-action="ListCalculated">List</a>
 </div>

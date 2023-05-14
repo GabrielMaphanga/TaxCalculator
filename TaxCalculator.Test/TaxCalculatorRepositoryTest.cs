@@ -23,13 +23,14 @@ namespace TaxCalculator.Test
         public void Create_CalculatedAnnualTax_Should_Add_Entity_To_Repository()
         {
             // Arrange
-            var calculatedAnnualTax = new CalculatedAnnualTax {  };
+            var newCalculatedAnnualTax = new CalculatedAnnualTax { CalculatedTax = 3500, NetPay= 66500, DateTime= DateTime.Now };
 
             // Act
-            _repository.CreateCalculatedAnnualTax(calculatedAnnualTax);
+            _repository.CreateCalculatedAnnualTax(newCalculatedAnnualTax);
+            var _calculatedAnnualTaxes = _repository.GetCalculatedAnnualTaxes();
 
             // Assert
-            //Assert.Contains(newEntity, _entities);
+            Assert.Contains(newCalculatedAnnualTax, _calculatedAnnualTaxes);
         }
 
         [Test]
@@ -57,13 +58,13 @@ namespace TaxCalculator.Test
             _repository.UpdateCalculatedAnnualTax(updatedCalculatedAnnualTax);
 
             // Assert
-            //var result = _repository.Read(entityId);
-            //Assert.IsNotNull(result);
-            //Assert.AreEqual(updatedEntity.Name, result.Name);
+            var result = _repository.GetCalculatedAnnualTax(entityId);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(updatedCalculatedAnnualTax.CalculatedTax, result.CalculatedTax);
         }
 
         [Test]
-        public void _Delete_CalculatedAnnualTax_Should_Remove_CalculatedAnnualTax_From_Repository()
+        public void Delete_CalculatedAnnualTax_Should_Remove_CalculatedAnnualTax_From_Repository()
         {
             // Arrange
             var entityId = 3;
@@ -72,8 +73,8 @@ namespace TaxCalculator.Test
            _repository.DeleteCalculatedAnnualTax(entityId);
 
             // Assert
-            //var result = _repository.Read(entityId);
-           // Assert.IsNull(result);
+            var result = _repository.GetCalculatedAnnualTax(entityId);
+            Assert.IsNull(result);
         }
     }
 }

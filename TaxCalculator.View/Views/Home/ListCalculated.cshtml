@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TaxCalulator.Core.Entities.CalculatedAnnualTax>
+
+@{
+    ViewData["Title"] = "ListCalculated";
+}
+
+<h1>ListCalculated</h1>
+
+<p>
+    <a asp-action="Index">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CalculatedTax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NetPay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CalculatedTax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetPay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
