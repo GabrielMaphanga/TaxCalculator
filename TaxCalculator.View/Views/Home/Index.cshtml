@@ -1,0 +1,27 @@
+﻿@model IndividualInput
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<form asp-action="Calculate" method="post">
+    <div>
+        <label for="AnnualIncome">AnnualIncome:</label>
+        <input type="number" id="AnnualIncome" name="AnnualIncome" value="@Model.AnnualIncome" />
+    </div>
+    <div>
+        <label asp-for="PostalCodeValue">Postal Code</label>
+        <select asp-for="@Model.PostalCodeValue">
+            <option value="">Choose an option</option>
+            <option value="7441">7441</option>
+            <option value="100">A100</option>
+            <option value="7000">7000</option>
+            <option value="1000">1000</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Calculate</button>
+    </div>
+</form>
+
